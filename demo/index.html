@@ -29,17 +29,16 @@
   <body>
     <div class="vertical-section-container centered">
       <h3>Basic exmg-snackbars demo</h3>
-
       <script type="module">
         import {LitElement, html, customElement} from 'lit-element';
         import {showSnackBar} from '../exmg-snackbars';
         class Demo extends LitElement{
           _showSnackbar() {
-            showSnackBar('Hello world!')
+            showSnackBar('Some error occurred!')
           }
 
           _showSnackbar2() {
-            showSnackBar('Test message')
+            showSnackBar('User was successfully updated!', { duration: 0, showCloseButton: true })
           }
 
           render() {
