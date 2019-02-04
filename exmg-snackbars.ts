@@ -5,19 +5,23 @@ import './exmg-snackbars-icons';
 export interface ExmgSnackbarsOptionsInterface {
   showCloseButton?: boolean;
   duration?: number;
+  toastContainerNodeId?: string;
 }
 
-function _getToastContainerNode(): Node {
-  const toastContainerNodeId = 'paper-toast-container';
+function _getToastContainerNode(originalOptions?: ExmgSnackbarsOptionsInterface): Node {
+  const options = {
+    toastContainerNodeId: 'paper-toast-container',
+    ...originalOptions
+  };
 
-  const existingNode = document.querySelector('#' + toastContainerNodeId);
+  const existingNode = document.querySelector('#' + options.toastContainerNodeId);
 
   if (existingNode) {
     return existingNode;
   }
 
   let toastContainerNode = document.createElement('div');
-  toastContainerNode.id = toastContainerNodeId;
+  toastContainerNode.id = options.toastContainerNodeId;
   document.body.appendChild(toastContainerNode);
 
   return toastContainerNode;
@@ -54,7 +58,7 @@ function _getToastNode(message: string, originalOptions?: ExmgSnackbarsOptionsIn
 }
 
 export function showSnackBar(message: string, originalOptions?: ExmgSnackbarsOptionsInterface) {
-  const toastContainerNode = _getToastContainerNode();
+  const toastContainerNode = _getToastContainerNode(originalOptions);
   const toastNode = _getToastNode(message, originalOptions);
 
   toastContainerNode.appendChild(toastNode);
@@ -64,7 +68,7 @@ export function showSnackBar(message: string, originalOptions?: ExmgSnackbarsOpt
   (new MutationObserver((_mutationsList: MutationRecord[], observer: MutationObserver) => {
     if (!toastNode.opened) {
       observer.disconnect();
-      // toastContainerNode.removeChild(toastNode);
+      toastContainerNode.removeChild(toastNode);
     }
   })).observe(toastNode, { attributes: true });
 }
