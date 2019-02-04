@@ -6,6 +6,8 @@
 
     <title>exmg-snackbars demo</title>
 
+    <link rel="stylesheet" href="../node_modules/@material/snackbar/dist/mdc.snackbar.css" />
+
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../node_modules/@webcomponents/shadycss/apply-shim.min.js"></script>
 
@@ -15,6 +17,7 @@
     <script type="module" src="../node_modules/@polymer/paper-item/paper-item.js"></script>
     <script type="module" src="../node_modules/@polymer/paper-item/paper-item-body.js"></script>
     <script type="module" src="../node_modules/@polymer/paper-item/paper-icon-item.js"></script>
+    <script type="module" src="../node_modules/@material/snackbar/index.js"></script>
 
     <!-- Ensure Web Animations polyfill is loaded -->
     <script src="../node_modules/web-animations-js/web-animations-next-lite.min.js"></script>
@@ -27,6 +30,8 @@
 
   </head>
   <body>
+  <div class="mdc-snackbar mdc-snackbar--open"><div class="mdc-snackbar__surface"><div class="mdc-snackbar__label" role="status" aria-live="polite">Can't send photo. Retry in 5 seconds.</div><div class="mdc-snackbar__actions"><button type="button" class="mdc-button mdc-snackbar__action">Retry</button><button class="mdc-icon-button mdc-snackbar__dismiss material-icons" title="Dismiss">close</button></div></div></div>
+
     <div class="vertical-section-container centered">
       <h3>Basic exmg-snackbars demo</h3>
       <demo-snippet>
