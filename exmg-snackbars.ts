@@ -11,16 +11,16 @@ export interface ExmgSnackbarsOptionsInterface {
 const getToastContainerNode = (originalOptions?: ExmgSnackbarsOptionsInterface): Node => {
   const options = {
     toastContainerNodeId: 'paper-toast-container',
-    ...originalOptions
+    ...originalOptions,
   };
 
-  const existingNode = document.querySelector('#' + options.toastContainerNodeId);
+  const existingNode = document.querySelector(`#${options.toastContainerNodeId}`);
 
   if (existingNode) {
     return existingNode;
   }
 
-  let toastContainerNode = document.createElement('div');
+  const toastContainerNode = document.createElement('div');
   toastContainerNode.id = options.toastContainerNodeId;
   document.body.appendChild(toastContainerNode);
 
@@ -31,7 +31,7 @@ const getToastCloseBtnNode = () => {
   const node = document.createElement('paper-icon-button');
 
   node.icon = 'exmg-icons:close';
-  node.onclick = function() {
+  node.onclick = function () {
     const that = <HTMLElement>this;
     (<any>that.parentElement).toggle();
   };
@@ -44,7 +44,7 @@ const getToastNode = (message: string, originalOptions?: ExmgSnackbarsOptionsInt
   const options = {
     showCloseButton: false,
     duration: 3000,
-    ...originalOptions
+    ...originalOptions,
   };
 
   node.text = message;
@@ -65,10 +65,10 @@ export const showSnackBar = (message: string, originalOptions?: ExmgSnackbarsOpt
 
   toastNode.open();
 
-  (new MutationObserver((_mutationsList: MutationRecord[], observer: MutationObserver) => {
+  (new MutationObserver((_: MutationRecord[], observer: MutationObserver) => {
     if (!toastNode.opened) {
       observer.disconnect();
       toastContainerNode.removeChild(toastNode);
     }
-  })).observe(toastNode, { attributes: true });
+  })).observe(toastNode, {attributes: true});
 };
