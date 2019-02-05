@@ -8,7 +8,7 @@ export interface ExmgSnackbarsOptionsInterface {
   toastContainerNodeId?: string;
 }
 
-function _getToastContainerNode(originalOptions?: ExmgSnackbarsOptionsInterface): Node {
+const getToastContainerNode = (originalOptions?: ExmgSnackbarsOptionsInterface): Node => {
   const options = {
     toastContainerNodeId: 'paper-toast-container',
     ...originalOptions
@@ -25,9 +25,9 @@ function _getToastContainerNode(originalOptions?: ExmgSnackbarsOptionsInterface)
   document.body.appendChild(toastContainerNode);
 
   return toastContainerNode;
-}
+};
 
-function _getToastCloseBtnNode() {
+const getToastCloseBtnNode = () => {
   const node = document.createElement('paper-icon-button');
 
   node.icon = 'exmg-icons:close';
@@ -37,9 +37,9 @@ function _getToastCloseBtnNode() {
   };
 
   return node;
-}
+};
 
-function _getToastNode(message: string, originalOptions?: ExmgSnackbarsOptionsInterface) {
+const getToastNode = (message: string, originalOptions?: ExmgSnackbarsOptionsInterface) => {
   const node = document.createElement('paper-toast');
   const options = {
     showCloseButton: false,
@@ -51,15 +51,15 @@ function _getToastNode(message: string, originalOptions?: ExmgSnackbarsOptionsIn
   node.duration = options.duration;
 
   if (options.showCloseButton) {
-    node.appendChild(_getToastCloseBtnNode());
+    node.appendChild(getToastCloseBtnNode());
   }
 
   return node;
-}
+};
 
-export function showSnackBar(message: string, originalOptions?: ExmgSnackbarsOptionsInterface) {
-  const toastContainerNode = _getToastContainerNode(originalOptions);
-  const toastNode = _getToastNode(message, originalOptions);
+export const showSnackBar = (message: string, originalOptions?: ExmgSnackbarsOptionsInterface) => {
+  const toastContainerNode = getToastContainerNode(originalOptions);
+  const toastNode = getToastNode(message, originalOptions);
 
   toastContainerNode.appendChild(toastNode);
 
@@ -71,4 +71,4 @@ export function showSnackBar(message: string, originalOptions?: ExmgSnackbarsOpt
       toastContainerNode.removeChild(toastNode);
     }
   })).observe(toastNode, { attributes: true });
-}
+};
