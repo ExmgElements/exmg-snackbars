@@ -47,9 +47,9 @@ suite('<exmg-snackbars>', function () {
         setTimeout(() => {
           assert.notExists(document.querySelector('paper-toast'), 'Toast should not exist');
           done();
-        },  100);
+        }, 100);
 
-      },  4000);
+      }, 4000);
     });
   });
 });
