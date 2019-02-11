@@ -65,10 +65,12 @@ export const showSnackBar = (message: string, originalOptions?: ExmgSnackbarsOpt
 
   toastNode.open();
 
-  (new MutationObserver((_: MutationRecord[], observer: MutationObserver) => {
+  const mutationObserver = new MutationObserver((_: MutationRecord[], observer: MutationObserver) => {
     if (!toastNode.opened) {
       observer.disconnect();
       toastContainerNode.removeChild(toastNode);
     }
-  })).observe(toastNode, {attributes: true});
+  });
+
+  mutationObserver.observe(toastNode, {attributes: true});
 };
