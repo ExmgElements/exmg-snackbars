@@ -10,7 +10,7 @@ suite('<exmg-snackbars>', function () {
 
       assert.exists(document.querySelector('#paper-toast-container'), 'Toast container should exist');
       assert.exists(document.querySelector('paper-toast'), 'Toast should exist');
-      assert.notExists(document.querySelector('paper-icon-button'), 'Toast close button should exist');
+      assert.notExists(document.querySelector('div.close-btn'), 'Toast close button should exist');
 
       await wait(1000);
       assert.notExists(document.querySelector('paper-toast'), 'Toast should not exist');
@@ -21,7 +21,7 @@ suite('<exmg-snackbars>', function () {
 
       assert.exists(document.querySelector('#' + 'custom-id'), 'Toast container should exist');
       assert.exists(document.querySelector('paper-toast'), 'Toast should exist');
-      assert.notExists(document.querySelector('paper-icon-button'), 'Toast close button should exist');
+      assert.notExists(document.querySelector('div.close-btn'), 'Toast close button should exist');
 
       await wait(1000);
       assert.notExists(document.querySelector('paper-toast'), 'Toast should not exist');
@@ -32,14 +32,14 @@ suite('<exmg-snackbars>', function () {
 
       assert.exists(document.querySelector('#paper-toast-container'), 'Toast container should exist');
       assert.exists(document.querySelector('paper-toast'), 'Toast should exist');
-      assert.exists(document.querySelector('paper-icon-button'), 'Toast close button should exist');
+      assert.exists(document.querySelector('div.close-btn'), 'Toast close button should exist');
 
       await wait(4000);
 
       /**
        * Testing toast close feature
        */
-      document.querySelector('paper-icon-button')!.click();
+      (<HTMLElement>document.querySelector('div.close-btn')).click();
 
       await wait(100);
 

@@ -1,6 +1,5 @@
-import '@polymer/paper-icon-button/paper-icon-button';
 import '@polymer/paper-toast';
-import './exmg-snackbars-icons';
+import {closeIcon} from './exmg-snackbars-icons';
 
 export interface ExmgSnackbarsOptionsInterface {
   showCloseButton?: boolean;
@@ -28,9 +27,21 @@ const getToastContainerNode = (originalOptions?: ExmgSnackbarsOptionsInterface):
 };
 
 const getToastCloseBtnNode = () => {
-  const node = document.createElement('paper-icon-button');
+  const node = document.createElement('div');
 
-  node.icon = 'exmg-icons:close';
+  node.className = 'close-btn';
+  node.style.display = 'inline-block';
+  node.style.padding = '8px';
+  node.style.position = 'relative';
+  node.style.outline = 'none';
+  node.style.userSelect = 'none';
+  node.style.cursor = 'pointer';
+  node.style.zIndex = '0';
+  node.style.lineHeight = '1';
+  node.style.boxSizing = 'border-box !important';
+
+  node.innerHTML = closeIcon;
+
   node.onclick = function () {
     const that = <HTMLElement>this;
     (<any>that.parentElement).toggle();
